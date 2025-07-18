@@ -1,0 +1,63 @@
+## Amz Linux 2023
+## instance with atleast 2GB RAM
+
+#### Install PHP, MySQL, Nginx:
+sudo hostnamectl set-hostname appsrv
+sudo dnf update
+sudo dnf install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+nginx -v   ----> to check version
+
+### install php with the following commands
+sudo dnf install php8.2 php-fpm php-mysqlnd php-pdo php-mbstring -y
+php -v
+
+sudo systemctl start php-fpm  ---> fpm -fast process manager
+sudo systemctl enable php-fpm
+sudo systemctl restart nginx
+
+
+### to create database and table you need the following agent
+sudo yum install mariadb105 -y
+
+### connect to  the database using MySQL agent installed in the above stage
+mysql -h loanprospects.cc3g2myo0dxl.us-east-1.rds.amazonaws.com -u admin -p
+
+-------------------------
+-h: your RDS endpoint
+-u: your RDS username (like admin)
+-p: it will ask for your RDS password
+-------------------------
+
+Show databases;
+CREATE DATABASE quickloan_db;      
+USE quickloan_db;
+show tables;
+CREATE TABLE applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    contact VARCHAR(20) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    loan_type VARCHAR(50) NOT NULL
+);
+
+SELECT * FROM applications;
+
+
+
+## copy all 3 folder via winscp to ec2 instance
+cd ~
+sudo mv public/ includes/  /usr/share/nginx/html/
+
+
+### use the following commands so that nginx has the required permissions
+sudo chown -R nginx:nginx /usr/share/nginx/html/public
+sudo chmod -R 755 /usr/share/nginx/html/public
+
+
+### update the file quickloan.conf with your domain name
+cd ~/nginx/
+sudo cp quickloan.conf /etc/nginx/conf.d
+sudo nginx -t
+sudo systemctl reload nginx
