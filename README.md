@@ -52,7 +52,7 @@ A hands-on cloud deployment project that demonstrates how to host a PHP-based lo
 
 ## 📐 Architecture Overview
 
-``
+```plaintext
                     ┌────────────────────┐
                     │      Users         │
                     └────────┬───────────┘
