@@ -1,47 +1,58 @@
-🚀 RDS-Quickloan_PHP
-A hands-on AWS cloud deployment project demonstrating how to host a PHP-based loan management system with high availability, scalability, and security using core AWS services.
+# 💼 Project Name: RDS-Quickloan_PHP
 
-📋 Project Requirements :-
+A hands-on cloud deployment project that demonstrates how to host a PHP-based loan management system on **AWS** with **high availability**, **scalability**, and **security**.
 
-✅ Amazon VPC
-✅ EC2 (App Server)
-✅ Security Groups
-✅ Amazon RDS (MySQL)
-✅ Amazon S3 (Static content)
-✅ AMI (Amazon Machine Image)
-✅ Application Load Balancer
-✅ Auto Scaling Group
-✅ EC2 Launch Template
-✅ Route53 / NOIP (For demo DNS)
+---
 
-🧱 Technologies Installed
-Component	Technology
-OS	Amazon Linux 2
-Web Server	Nginx
-Backend	PHP
-Database	MySQL (RDS)
-Frontend	HTML, CSS, JS
+## 📋 Project Requirements
 
-⚙️ AWS Infrastructure Setup
-Component	Status	Description
-VPC	✅	Proj-vpc created
-Subnets	✅	2 Public + 3 Private (for DB)
-Route Table	✅	PubRT-ProjVPC for public subnets
-Internet Gateway	✅	Attached to VPC
-Security Groups	✅	App Server SG + RDS SG
-App Server SG	✅	Inbound: SSH (22), HTTP (80)
-RDS SG	✅	Allows MySQL from App Server SG (3306)
-EC2 Launch Template	✅	Created from custom AMI
-AMI	✅	Includes PHP + Nginx
-Auto Scaling Group	✅	Scaling based on traffic
-Load Balancer	✅	Distributes traffic across EC2 instances
-RDS Instance	✅	Private subnet, MySQL engine
-S3 Bucket	✅	For storing images and static files
+- ✅ Amazon VPC  
+- ✅ EC2 (App Server)  
+- ✅ Security Groups  
+- ✅ Amazon RDS (MySQL)  
+- ✅ Amazon S3 (Static content)  
+- ✅ AMI (Amazon Machine Image)  
+- ✅ Load Balancer (Application Load Balancer)  
+- ✅ Auto Scaling Group  
+- ✅ EC2 Launch Template  
+- ✅ Route 53 (NOIP used for demo)
 
-🏗️ Architecture Overview :-
+---
 
+## 🧱 Technologies Used
 
+| Component      | Technology             |
+|----------------|------------------------|
+| OS             | Amazon Linux 2         |
+| Web Server     | Nginx                  |
+| Backend        | PHP                    |
+| Database       | MySQL (Amazon RDS)     |
+| Frontend       | HTML, CSS, JavaScript  |
 
+---
+
+## ⚙️ Deployment Status
+
+| Component               | Status  | Details                                  |
+|-------------------------|---------|------------------------------------------|
+| **VPC**                 | ✅      | Name: `Proj-vpc`                         |
+| **Subnets**             | ✅      | 5 Subnets: 2 Public (App), 3 Private (DB)|
+| **Route Table**         | ✅      | `PubRT-ProjVPC` for public subnets       |
+| **Internet Gateway**    | ✅      | Attached to VPC                          |
+| **Security Groups**     | ✅      | `App Server SG`: SSH(22), HTTP(80)       |
+|                         |         | `RDS SG`: Allows MySQL(3306) from App SG |
+| **EC2 Launch Template** | ✅      | Created from AMI                         |
+| **AMI**                 | ✅      | Custom AMI with PHP + Nginx              |
+| **Auto Scaling Group**  | ✅      | Configured with launch template          |
+| **Load Balancer (ALB)** | ✅      | Application Load Balancer setup          |
+| **RDS Instance**        | ✅      | MySQL DB in Private Subnet               |
+| **S3 Bucket**           | ✅      | Hosting static assets/images             |
+
+---
+
+## 📐 Architecture Overview
+
+``
                     ┌────────────────────┐
                     │      Users         │
                     └────────┬───────────┘
@@ -73,19 +84,3 @@ S3 Bucket	✅	For storing images and static files
      │    Amazon S3 (Images &     │
      │  Static Content Hosting)   │
      └────────────────────────────┘
-     
-
-
-🔐 Security Notes
-App Server SG: Allows SSH (22) and HTTP (80)
-RDS SG: Allows only MySQL (3306) from App Server SG
-AMI: Custom EC2 image with pre-installed PHP & Nginx
-Auto Scaling: Configured for dynamic traffic management
-
-
-
-💡 Project Highlights
-Hosted using best AWS practices
-Scalable and fault-tolerant architecture
-Clean separation of compute and database layers
-Fully cloud-native deployment
